@@ -353,8 +353,8 @@
             nav { display: none; } /* 簡化處理，手機版隱藏選單 */
             .showcase-container { flex-direction: column; }
         }
-   /* --- 未來展望 Future Outlook Section --- */
-        #future {
+  /* --- 未來展望 Future Outlook Section --- */
+     #future {
             background-color: var(--primary-blue); /* 深藍色背景 */
             color: var(--white);
             text-align: center;
@@ -378,12 +378,22 @@
             border-radius: 10px;
             text-align: left;
             border-left: 5px solid var(--solar-orange); /* 橘色邊條強調 */
+            /* 🎯 新增: 啟動 CSS 過渡效果 */
+            transition: 0.3s;
         }
 
+        /* 🎯 新增: 滑鼠懸停效果 */
+        .future-item:hover {
+            transform: translateY(-5px); /* 輕微上移 */
+            background: rgba(255, 255, 255, 0.2); /* 讓背景稍微亮一點 */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4); /* 增加陰影 */
+        }
+        
         .future-item h3 {
             color: var(--solar-orange);
             margin-bottom: 10px;
         }
+        
     </style>
 </head>
 <body>
@@ -623,4 +633,5 @@ function updateCarDisplay() {
    
 
 </html>
+
 
