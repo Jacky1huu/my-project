@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技術突破與下一代車 - NKUST Apollo 核心理念</title> 
+    <style>
+        /* --- 全域設定：沿用主網站的變數 --- */
+        :root {
+            --primary-blue: #003366;
+            --solar-orange: #ff6600;
+            --carbon-black: #1a1a1a;
+            --light-gray: #f4f4f4;
+            --white: #ffffff;
+        }
+        body { 
+            font-family: 'Noto Sans TC', sans-serif; 
+            line-height: 1.7; 
+            background-color: var(--light-gray); 
+            color: var(--carbon-black); 
+            margin: 0; 
+            padding: 0;
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px;}
+        
+        /* --- 頂部導覽列 --- */
+        .header { background-color: var(--primary-blue); color: white; padding: 15px 0; text-align: center; }
+        .header a { 
+            color: var(--solar-orange); 
+            text-decoration: none; 
+            font-weight: bold; 
+            margin-right: 20px; 
+            transition: color 0.3s;
+        }
+        .header a:hover {
+            color: var(--white);
+        }
+
+        /* --- 標題區塊 (Vision Hero) --- */
+        .vision-hero { background-color: var(--carbon-black); color: white; padding: 50px 0; text-align: center; margin-bottom: 30px;}
+        .vision-hero h1 { font-size: 3rem; color: var(--solar-orange); margin-bottom: 15px; } 
+        .vision-hero p { font-size: 1.3rem; opacity: 0.9; }
+
+        /* --- 主要圖片 --- */
+        .main-img { 
+            width: 100%; 
+            max-height: 450px; 
+            object-fit: cover; 
+            border-radius: 10px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+        }
+        
+        /* --- 內容主標題 --- */
+        .container h2 {
+            color: var(--primary-blue);
+            border-bottom: 3px solid var(--solar-orange);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+
+        /* --- 價值卡片 (Value Card) 優化 --- */
+        .value-card { 
+            background: var(--white); 
+            padding: 35px; 
+            border-radius: 12px; 
+            margin-bottom: 35px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden; 
+        }
+        
+        .value-card:hover, .value-card:active { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .value-card h3 { 
+            color: var(--primary-blue); 
+            border-left: 6px solid var(--solar-orange); 
+            padding-left: 15px; 
+            margin-bottom: 20px; 
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+
+        .value-card p {
+            font-size: 1.05rem;
+        }
+
+        /* 底部返回連結按鈕 */
+        .back-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--solar-orange);
+            color: var(--white) !important;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #e65c00;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="container">
+            <a href="index.html">« 返回主網站</a>
+            <span>| 技術突破與下一代車：詳細內容</span>
+        </div>
+    </div>
+
+    <div class="vision-hero">
+        <h1>驅動未來的極致效率</h1>
+        <p>以尖端技術和輕量化設計，挑戰太陽能車的性能邊界。</p>
+    </div>
+
+    <div class="container">
+        <img src="https://placehold.co/1000x450/003366/ffffff?text=Next+Generation+Apollo+Vision" alt="技術突破願景圖" class="main-img"> 
+
+        <h2>下一代車輛的關鍵創新</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 40px;">
+            專注於下一代 Apollo 太陽能車的輕量化與效率提升。我們的目標是採用更先進的電池與太陽能技術，進一步優化空氣動力學設計，挑戰更快的速度和更遠的續航。
+        </p>
+
+        <div class="value-card">
+            <h3>⚡️ 新一代高效能太陽能板</h3>
+            <p>導入光電轉換效率更高的單晶矽技術，並配合微結構表面處理，以最小的面積獲取最大的電力。同時，研究柔性太陽能板在曲面車體上的應用可能性。</p>
+        </div>
+
+        <div class="value-card">
+            <h3>🚀 超輕量複合材料結構</h3>
+            <p>繼續深化碳纖維技術應用，結合航太級蜂巢結構，在保證車身強度的前提下，將車體重量降至極限。這將顯著減少能源消耗，提高續航里程。</p>
+        </div>
+        
+        <div class="value-card">
+            <h3>🧠 智能電池管理與動力整合</h3>
+            <p>全面升級 BMS 系統，實現電池組的即時精準監控與熱管理，確保動力輸出穩定且安全，有效延長續航里程。此外，優化動力傳動系統，減少能量損耗。</p>
+        </div>
+        
+        <div style="text-align: center; padding-top: 30px; padding-bottom: 50px;">
+            <a href="index.html#future" class="back-link">« 返回 未來展望 區塊</a>
+        </div>
+    </div>
+</body>
+</html>
