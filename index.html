@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高科大阿波羅太陽能車隊 NKUST Apollo Solar Car Team</title>
+    <style>
+        /* --- 全域設定 --- */
+        :root {
+            --primary-blue: #003366; /* NKUST Blue */
+            --solar-orange: #ff6600; /* Sun Energy */
+            --carbon-black: #1a1a1a; /* Carbon Fiber */
+            --light-gray: #f4f4f4;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--carbon-black);
+            background-color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- 導覽列 --- */
+        header {
+            background: rgba(26, 26, 26, 0.95);
+            color: var(--white);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--solar-orange);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--white);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a:hover {
+            color: var(--solar-orange);
+        }
+
+        /* 手機版選單按鈕 (隱藏，僅作示意) */
+        .menu-toggle {
+            display: none;
+        }
+
+        /* --- Hero 主視覺 --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://www.nkust.edu.tw/var/file/0/1000/pictures/725/part_74101_4668819_47376.jpg'); /* 示意圖 */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--solar-orange);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #e65c00;
+            transform: translateY(-3px);
+        }
+
+        /* --- 關於我們 / 核心價值 --- */
+        .section {
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .section-title .line {
+            width: 60px;
+            height: 4px;
+            background: var(--solar-orange);
+            margin: 0 auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* --- 最新車款 Apollo IX Plus --- */
+        .showcase {
+            background-color: var(--carbon-black);
+            color: var(--white);
+        }
+
+        .showcase-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .showcase-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .showcase-text h3 {
+            font-size: 2rem;
+            color: var(--solar-orange);
+            margin-bottom: 1rem;
+        }
+
+        .showcase-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .spec-item strong {
+            display: block;
+            color: var(--solar-orange);
+            font-size: 1.2rem;
+        }
+
+        .showcase-img {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .showcase-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.2);
+        }
+
+        /* --- 歷年戰績 --- */
+        .achievements {
+            background: var(--white);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+        }
+
+        .year {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            width: 120px;
+            flex-shrink: 0;
+        }
+
+        .event {
+            flex-grow: 1;
+        }
+
+        .badge {
+            background: var(--solar-orange);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+
+        /* --- 聯絡/頁尾 --- */
+        footer {
+            background: var(--white); /* 改為白色背景 */
+            color: var(--carbon-black); /* 文字改為深黑 */
+            padding: 50px 5%;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05); /* 增加一點陰影，讓它與頁面有區隔 */
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            color: var(--primary-blue); /* 標題改為藍色 */
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--primary-blue); /* 社交連結改為藍色 */
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        .social-links a:hover {
+            color: var(--solar-orange); /* 滑鼠懸停時仍是橘色 */
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(0,0,0,0.1); /* 分隔線改為深色 */
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: rgba(0,0,0,0.7); /* 版權文字改為深色 */
+        }
+        
+
+        /* --- 車款切換 (Carousel) 樣式 --- */
+.car-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.car-nav-arrow {
+    background: none;
+    border: none;
+    color: var(--solar-orange);
+    font-size: 3rem;
+    cursor: pointer;
+    padding: 10px;
+    transition: 0.3s;
+    user-select: none; /* 防止被選取 */
+    z-index: 50;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.car-nav-arrow:hover {
+    color: var(--white);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.car-nav-arrow.left { left: 0; }
+.car-nav-arrow.right { right: 0; }
+
+#car-display {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4rem;
+    padding: 2rem;
+    min-height: 400px; /* 避免內容切換時區塊跳動 */
+    transition: opacity 0.5s; /* 讓內容切換有淡入淡出效果 */
+}
+
+/* 響應式調整箭頭位置 */
+@media (max-width: 768px) {
+    .car-nav-arrow.left { left: -10px; font-size: 2.5rem; }
+    .car-nav-arrow.right { right: -10px; font-size: 2.5rem; }
+}/* --- 響應式調整 --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav { display: none; } /* 簡化處理，手機版隱藏選單 */
+            .showcase-container { flex-direction: column; }
+        }
+   /* --- 未來展望 Future Outlook Section --- */
+        #future {
+            background-color: var(--primary-blue); /* 深藍色背景 */
+            color: var(--white);
+            text-align: center;
+        }
+
+        #future h2 {
+            color: var(--solar-orange); /* 橘色標題 */
+            margin-bottom: 30px;
+        }
+
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .future-item {
+            background: rgba(255, 255, 255, 0.1); /* 半透明白色背景 */
+            padding: 25px;
+            border-radius: 10px;
+            text-align: left;
+            border-left: 5px solid var(--solar-orange); /* 橘色邊條強調 */
+        }
+
+        .future-item h3 {
+            color: var(--solar-orange);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">NKUST <span>APOLLO</span></div>
+        <nav>
+            <ul>
+                <li><a href="#home">首頁</a></li>
+                <li><a href="#about">關於車隊</a></li>
+                <li><a href="#car">旗艦車款</a></li>
+                <li><a href="#achievements">榮耀戰績</a></li>
+                <li><a href="#contact">聯絡我們</a></li>
+                <li><a href="#future">未來展望</a></li> <li><a href="#contact">聯絡我們</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>逐光前行，驅動未來</h1>
+        <p>台灣唯一堅持 27 年的太陽能車傳奇，<br>從高雄出發，挑戰世界極限。</p>
+        <a href="#about" class="btn btn-primary">探索我們的旅程</a>
+    </section>
+
+    <section id="about" class="section">
+      <div class="features">
+            <a href="green-energy-details.html" class="feature-card"> 
+                <div class="feature-icon">☀</div>
+                <h3>綠能永續</h3>
+                <p>追求能源效率的極致，我們不只是造車，而是在驗證零碳排移動的無限可能。</p>
+            </a>
+            
+            <a href="hands-on-education.html" class="feature-card"> 
+                <div class="feature-icon">🛠</div>
+                <h3>實戰教育</h3>
+                <p>由艾和昌教授領軍，結合模具、電機、電子跨領域專長，培養具備實戰能力的頂尖工程師。</p>
+            </a>
+            
+            <a href="challenge-extreme.html" class="feature-card"> 
+                <div class="feature-icon">🌏</div>
+                <h3>挑戰極限</h3>
+                <p>在澳洲 3000 公里的荒漠中，對抗極端氣候，證明台灣技術在世界舞台的競爭力。</p>
+            </a>
+            </div>
+    </section>
+
+    <section id="car" class="section showcase">
+    <div class="section-title">
+        <h2 style="color:white;">阿波羅車隊 歷代車款回顧</h2>
+        <div class="line"></div>
+    </div>
+
+    <div class="car-carousel">
+        
+        <button class="car-nav-arrow left" onclick="prevCar()">&#10094;</button>
+
+        <div id="car-display" class="showcase-container">
+            </div>
+
+        <button class="car-nav-arrow right" onclick="nextCar()">&#10095;</button>
+    </div>
+</section>
+    <section id="achievements" class="section achievements">
+        <div class="section-title">
+            <h2>榮耀時刻</h2>
+            <div class="line"></div>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="year">2025</div>
+                <div class="event">
+                    <strong>BWSC 世界太陽能車挑戰賽</strong> <span class="badge">世界第四</span>
+                    <p>巡洋艦級 (Cruiser Class) - 克服澳洲強風與冰雹氣候，穩定完賽。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2023</div>
+                <div class="event">
+                    <strong>BWSC 世界太陽能車挑戰賽</strong> <span class="badge">實用性全球第二</span>
+                    <p>總成績第四名，展現極高的車輛可靠度與設計工藝。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2019</div>
+                <div class="event">
+                    <strong>阿布達比太陽能車挑戰賽</strong>
+                    <p>榮獲技術創新獎，展現台灣研發軟實力。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2003</div>
+                <div class="event">
+                    <strong>BWSC 世界太陽能車挑戰賽</strong> <span class="badge">亞洲第一</span>
+                    <p>總排第七名，奠定車隊在國際上的地位。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">1998</div>
+                <div class="event">
+                    <strong>傳奇起點</strong>
+                    <p>艾和昌教授創立車隊，打造台灣第一代太陽能車阿波羅一號。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+   <section class="section" id="future">
+        <div class="container">
+            <h2>🚀 未來展望：Apollo 的下一步</h2>
+            <p style="max-width: 800px; margin: 0 auto 50px;">
+                太陽能車隊的旅程從未停止。我們的目標不只是在賽場上獲勝，更是持續推動再生能源技術的應用邊界，為台灣綠色科技人才與產業貢獻力量。
+            </p>
+
+            <div class="future-grid">
+                <div class="future-item">
+                    <h3>技術突破與下一代車</h3>
+                    <p>專注於下一代 Apollo 太陽能車的輕量化與效率提升。目標是採用更先進的電池與太陽能技術，進一步優化空氣動力學設計，挑戰更快的速度和更遠的續航。</p>
+                </div>
+                <div class="future-item">
+                    <h3>產業合作與人才輸出</h3>
+                    <p>加強與台灣電動車、儲能技術等相關產業的合作，將車隊在 BMS、複合材料、系統整合等領域累積的實戰經驗和人才，導入業界，促成技術落地與產業升級。</p>
+                </div>
+                <div class="future-item">
+                    <h3>公眾教育與推廣</h3>
+                    <p>舉辦太陽能車科普展覽和校園講座，提高大眾對於再生能源和工程實作的興趣，並鼓勵更多年輕學子加入綠色科技的行列。</p>
+                </div>
+                <div class="future-item">
+                    <h3>挑戰新賽事與級別</h3>
+                    <p>除了澳洲 BWSC 外，考慮參加其他地區如美國或歐洲的太陽能車挑戰賽，在不同氣候和賽制下驗證車輛的穩定性和適應性，累積更多國際經驗。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>NKUST Apollo</h4>
+                <p>國立高雄科技大學 阿波羅太陽能車隊<br>
+                台灣高雄市三民區建工路 415 號<br>
+                (再生能源館)</p>
+            </div>
+            <div class="footer-col">
+                <h4>聯絡我們</h4>
+                <p>Email: apollosolarcar@nkust.edu.tw</p>
+                <p>Phone: 07-381-4526</p>
+            </div>
+            <div class="footer-col social-links">
+                <h4>關注我們</h4>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 NKUST Apollo Solar Car Team. All Rights Reserved.
+        </div>
+  
+
+    <script>
+        // 1. 車輛數據庫 (包含 9 代車)
+        // 請用這段代碼替換您檔案中 <script> 內部的 apolloCars 陣列
+const apolloCars = [
+    { name: "Apollo I", year: 1998, detail: "第一代原型車，奠定台灣太陽能車基礎。", image: 'https://placehold.co/400x300/1a1a1a/cccccc?text=Apollo+I', link: 'apollo1-details.html' },
+    { name: "Apollo II", year: 2000, detail: "優化能源轉換效率，參與首次區域挑戰賽。", image: 'https://placehold.co/400x300/1a1a1a/cccccc?text=Apollo+II', link: 'apollo2-details.html' },
+    { name: "Apollo III", year: 2001, detail: "輕量化結構設計，開始投入碳纖維應用。", image: 'https://placehold.co/400x300/1a1a1a/cccccc?text=Apollo+III', link: 'apollo3-details.html' },
+    { name: "Apollo IV", year: 2003, detail: "BWSC 亞洲區第一名，設計更加流線型。", image: 'https://placehold.co/400x300/1a1a1a/cccccc?text=Apollo+IV', link: 'apollo4-details.html' },
+    { name: "Apollo V", year: 2005, detail: "針對長途耐力賽設計，提升駕駛艙舒適度。", image: 'https://placehold.co/400x300/1a1a1a/cccccc?text=Apollo+V', link: 'apollo5-details.html' },
+    { name: "Apollo VI", year: 2007, detail: "冒險組世界第二名，模組化底盤設計。", image: 'https://placehold.co/400x300/1a1a1a/cccccc?text=Apollo+VI', link: 'apollo6-details.html' },
+    { name: "Apollo VII", year: 2013, detail: "全面改款，採用多晶矽太陽能板，提升性能。", image: 'https://placehold.co/400x300/1a1a1a/cccccc?text=Apollo+VII', link: 'apollo7-details.html' },
+    { name: "Apollo VIII", year: 2017, detail: "搭載更先進的電池管理系統，車體趨近實用。", image: 'https://placehold.co/400x300/1a1a1a/cccccc?text=Apollo+VIII', link: 'apollo8-details.html' },
+    { name: "Apollo IX Plus", year: 2025, detail: "旗艦款！BWSC 巡洋艦級世界第四名，四人座實用設計。", image: 'https://imgcdn.cna.com.tw/www/WebPhotos/1024/20231102/1151x768_wmkn_0_C20231102000057.jpg', link: 'apollo9-details.html' } 
+];
+
+        let currentCarIndex = apolloCars.length - 1; // 預設從最新的第九代開始 (Index 8)
+        const carDisplay = document.getElementById('car-display');
+
+       // 2. 渲染顯示區塊的函數 (請用這段代碼完整替換您原有的此函數)
+function updateCarDisplay() {
+    const car = apolloCars[currentCarIndex];
+
+    // 產生新的 HTML 內容
+    carDisplay.innerHTML = `
+        <div class="showcase-img">
+            <a href="${car.link}" target="_blank">
+                <img src="${car.image}" alt="${car.name}">
+            </a>
+        </div>
+        <div class="showcase-text">
+            <h3>${car.name} (${car.year})</h3>
+            <p>${car.detail}</p>
+            <div class="showcase-specs" style="margin-top: 20px;">
+                <div class="spec-item"><strong>代數</strong> ${currentCarIndex + 1} / ${apolloCars.length}</div>
+                <div class="spec-item"><strong>關鍵技術</strong> 輕量化碳纖維</div>
+            </div>
+            
+            <p style="margin-top: 25px; opacity: 0.8; color: white;">（點擊圖片查看 ${car.name} 完整資料）</p>
+
+        </div>
+    `;
+    carDisplay.style.opacity = 1; // 淡入效果
+}
+
+        // 3. 處理「下一代車」的函數
+        function nextCar() {
+            carDisplay.style.opacity = 0; // 開始淡出
+            setTimeout(() => {
+                currentCarIndex = (currentCarIndex + 1) % apolloCars.length;
+                updateCarDisplay();
+            }, 300); // 0.3 秒後切換內容
+        }
+
+        // 4. 處理「上一代車」的函數
+        function prevCar() {
+            carDisplay.style.opacity = 0; // 開始淡出
+            setTimeout(() => {
+                currentCarIndex = (currentCarIndex - 1 + apolloCars.length) % apolloCars.length;
+                updateCarDisplay();
+            }, 300); // 0.3 秒後切換內容
+        }
+
+        // 5. 確保網頁載入後，立即顯示最新的車款
+        document.addEventListener('DOMContentLoaded', updateCarDisplay);
+
+
+        // 6. 平滑捲動功能 (與車款切換邏輯合併)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+   
+</html>

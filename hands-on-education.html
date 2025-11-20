@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>實戰教育 - NKUST Apollo 跨領域合作</title>
+    <style>
+        /* 沿用網站的主題樣式 */
+        :root {
+            --primary-blue: #003366;
+            --solar-orange: #ff6600;
+            --carbon-black: #1a1a1a;
+            --light-gray: #f4f4f4;
+        }
+        body { font-family: 'Noto Sans TC', sans-serif; line-height: 1.7; background-color: var(--light-gray); color: var(--carbon-black); margin: 0; padding: 0;}
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px;}
+        .header { background-color: var(--primary-blue); color: white; padding: 15px 0; text-align: center; }
+        .header a { color: var(--solar-orange); text-decoration: none; font-weight: bold; margin-right: 20px; }
+        .vision-hero { background-color: var(--carbon-black); color: white; padding: 50px 0; text-align: center; margin-bottom: 30px;}
+        .vision-hero h1 { font-size: 3rem; color: var(--solar-orange); margin-bottom: 15px; }
+        .vision-hero p { font-size: 1.3rem; opacity: 0.9; }
+        
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 40px;}
+        .team-card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; transition: 0.3s;}
+        .team-card h3 { color: var(--primary-blue); margin-top: 10px; margin-bottom: 5px; }
+        .team-card h4 { color: var(--solar-orange); font-size: 1rem; font-weight: normal; margin-bottom: 15px; }
+        .team-card img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--solar-orange);}
+
+        .dept-list { list-style: none; padding: 0; margin-top: 20px;}
+        .dept-list li { background-color: var(--primary-blue); color: white; padding: 10px; border-radius: 5px; margin-bottom: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="container">
+            <a href="666.html">« 返回主網站</a>
+            <span>| 實戰教育：跨領域的工程師搖籃</span>
+        </div>
+    </div>
+
+    <div class="vision-hero">
+        <h1>專案導向的實戰教育</h1>
+        <p>打破科系藩籬，讓知識在實務中產生價值</p>
+    </div>
+
+    <div class="container">
+
+        <h2>🛠 跨科系合作：我們是這樣造車的</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 40px;">
+            一輛太陽能車的誕生，需要多項專業知識的協同合作。我們的車隊完美體現了高科大在工程領域的整合能力，讓學生在真實的專案挑戰中學習成長。
+        </p>
+
+        <div class="team-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+            <div class="team-card" style="background-color: var(--primary-blue); color: white;">
+                <h3>機械設計組</h3>
+                <p>負責車體結構、懸吊系統與空氣動力學分析。</p>
+                <ul class="dept-list">
+                    <li>模具工程系</li>
+                    <li>機械工程系</li>
+                </ul>
+            </div>
+             <div class="team-card" style="background-color: var(--primary-blue); color: white;">
+                <h3>電機電控組</h3>
+                <p>負責馬達驅動、太陽能板電路設計及佈線。</p>
+                <ul class="dept-list">
+                    <li>電機工程系</li>
+                    <li>電子工程系</li>
+                </ul>
+            </div>
+            <div class="team-card" style="background-color: var(--primary-blue); color: white;">
+                <h3>電池與軟體組</h3>
+                <p>負責BMS系統、數據採集與即時遠端監控程式撰寫。</p>
+                <ul class="dept-list">
+                    <li>電腦與通訊系</li>
+                    <li>資訊工程系</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 50px;">🧑‍🎓 核心團隊成員 (範例)</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 30px;">
+            車隊由各領域的優秀學生組成，每個人都是專案成功的關鍵。
+        </p>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="https://placehold.co/120x120/ff6600/ffffff?text=Chief" alt="隊長">
+                <h3>王大明 (隊長)</h3>
+                <h4>模具工程系</h4>
+                <p>負責專案進度、對外溝通及車體結構總成。</p>
+            </div>
+            <div class="team-card">
+                <img src="https://placehold.co/120x120/003366/ffffff?text=Electric" alt="電機組長">
+                <h3>陳小華 (電機組長)</h3>
+                <h4>電機工程系</h4>
+                <p>核心電機設計，負責電路板繪製與測試。</p>
+            </div>
+            <div class="team-card">
+                <img src="https://placehold.co/120x120/1a1a1a/ffffff?text=Strategy" alt="策略組長">
+                <h3>林美芳 (策略組長)</h3>
+                <h4>資訊工程系</h4>
+                <p>數據分析、能源策略模擬與即時決策支援。</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; padding-top: 30px; padding-bottom: 50px;">
+            <a href="666.html#about" style="color: var(--primary-blue); font-weight: bold; font-size: 1.2rem;">« 返回 關於我們 區塊</a>
+        </div>
+    </div>
+</body>
+</html>
