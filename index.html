@@ -394,7 +394,140 @@
             color: var(--solar-orange);
             margin-bottom: 10px;
         }
+
+         /* ★★★ 教授理念區塊 CSS (插入位置) ★★★ 
+           這是對應下方 HTML 結構的樣式
+        */
+        .professor-vision {
+            position: relative;
+            width: 100%;
+            max-width: 650px; /* 💥 加大寬度，從400到650，更大氣 */
+            aspect-ratio: 1 / 1; /* 保持方形 */
+            margin: 0 auto 80px; /* 增加下方間距 */
+            border-radius: 4px; /* 稍微銳利一點的圓角，比較像海報 */
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6); /* 更深邃的陰影 */
+            cursor: pointer;
+            z-index: 2;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+          /* 裝飾性外框線條，增加設計感 */
+        .professor-vision::after {
+            content: '';
+            position: absolute;
+            top: 20px; right: 20px; bottom: 20px; left: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+            z-index: 10;
+            transition: 0.5s;
+        }
         
+        .professor-vision:hover::after {
+            border-color: rgba(255, 255, 255, 0.8);
+            transform: scale(0.98);
+        }
+
+        .professor-vision img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease;
+            filter: brightness(0.8) grayscale(20%); /* 預設稍微低飽和度，更有質感 */
+        }
+
+        .professor-vision:hover img {
+            transform: scale(1.15); /* 緩慢推近效果 */
+            filter: brightness(0.5) grayscale(0%); /* 變暗但恢復色彩 */
+        }
+
+        .vision-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; /* 覆蓋滿版 */
+            padding: 50px; /* 增加內距 */
+            color: var(--white);
+            
+            /* 漸層優化：從底部向上更自然的黑影 */
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start; /* 靠左對齊更有雜誌感 */
+            text-align: left;
+        }
+
+        .vision-content h3 {
+            color: var(--white);
+            font-size: 2.8rem; /* 💥 字體加大 */
+            font-weight: 800;
+            margin-bottom: 5px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transform: translateY(40px); /* 預設位置 */
+            transition: transform 0.5s ease;
+            line-height: 1.1;
+        }
+        
+        .vision-content h3 span {
+            color: var(--solar-orange);
+        }
+
+        .vision-content .title-sub {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            transform: translateY(40px);
+            transition: transform 0.5s ease 0.05s;
+            border-bottom: 2px solid var(--solar-orange);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+         /* 裝飾性引號 */
+        .quote-icon {
+            font-size: 4rem;
+            color: var(--solar-orange);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.5s ease 0.1s;
+            line-height: 1;
+            margin-bottom: -20px;
+            display: block;
+        }
+
+        .vision-content blockquote {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #ddd;
+            max-width: 100%;
+            
+            /* 動畫設定 */
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
+        }
+
+        /* --- Hover State --- */
+        .professor-vision:hover .vision-content h3,
+        .professor-vision:hover .vision-content .title-sub {
+            transform: translateY(0); /* 標題上移歸位 */
+        }
+
+        .professor-vision:hover .quote-icon {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .professor-vision:hover .vision-content blockquote {
+            opacity: 1;
+            transform: translateY(0); /* 文字浮現 */
+        }
+
     </style>
 </head>
 <body>
@@ -681,6 +814,7 @@ function updateCarDisplay() {
    
 
 </html>
+
 
 
 
