@@ -11,27 +11,96 @@
             --solar-orange: #ff6600;
             --carbon-black: #1a1a1a;
             --light-gray: #f4f4f4;
+            --white: #ffffff;
+            --accent-green: #2ecc71; /* 新增綠色強調色 */
         }
         body { font-family: 'Noto Sans TC', sans-serif; line-height: 1.7; background-color: var(--light-gray); color: var(--carbon-black); margin: 0; padding: 0;}
         .container { max-width: 1000px; margin: 0 auto; padding: 20px;}
         .header { background-color: var(--primary-blue); color: white; padding: 15px 0; text-align: center; }
-        .header a { color: var(--solar-orange); text-decoration: none; font-weight: bold; margin-right: 20px; }
-        .vision-hero { background-color: var(--carbon-black); color: white; padding: 50px 0; text-align: center; margin-bottom: 30px;}
-        .vision-hero h1 { font-size: 3rem; color: var(--solar-orange); margin-bottom: 15px; }
-        .vision-hero p { font-size: 1.3rem; opacity: 0.9; }
-        .main-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); margin-bottom: 30px;}
+        .header a { color: var(--solar-orange); text-decoration: none; font-weight: bold; margin-right: 20px; transition: color 0.3s;}
+        .header a:hover { color: var(--white); }
         
-        .value-card { background: white; padding: 30px; border-radius: 8px; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
-        .value-card h3 { color: var(--primary-blue); border-left: 4px solid var(--solar-orange); padding-left: 10px; margin-bottom: 15px; }
-
-        /* 確保卡片內的圖片樣式一致 */
-        .value-card img {
-            width: 100%; /* 圖片填滿卡片寬度 */
-            height: auto;
-            border-radius: 6px;
-            margin-top: 15px; /* 與上方文字隔開 */
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        .vision-hero { background-color: var(--carbon-black); color: white; padding: 60px 0; text-align: center; margin-bottom: 40px;}
+        .vision-hero h1 { font-size: 3rem; color: var(--solar-orange); margin-bottom: 15px; }
+        .vision-hero p { font-size: 1.3rem; opacity: 0.9; max-width: 800px; margin: 0 auto; }
+        
+        .main-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); margin-bottom: 40px;}
+        
+        .section-title {
+            color: var(--primary-blue);
+            border-bottom: 3px solid var(--solar-orange);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            margin-top: 40px;
         }
+        .section-title:first-of-type { margin-top: 0; }
+
+        .intro-text {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--accent-green);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .value-card { background: white; padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .value-card:hover { transform: translateY(-5px); }
+        .value-card h3 { color: var(--primary-blue); border-left: 5px solid var(--solar-orange); padding-left: 15px; margin-bottom: 15px; font-size: 1.5rem;}
+        .value-card p { font-size: 1.05rem; margin-bottom: 15px; color: #444; }
+        .value-card ul { padding-left: 20px; margin-bottom: 15px; }
+        .value-card li { margin-bottom: 8px; list-style-type: disc; color: #555; }
+
+        .value-card img {
+            width: 100%; 
+            height: 250px; 
+            object-fit: cover; 
+            border-radius: 8px;
+            margin-top: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* 互動抽屜樣式 (保持一致性) */
+        .drawer-trigger {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-blue);
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            border: 1px solid var(--primary-blue);
+            padding: 8px 20px;
+            border-radius: 30px;
+            background: transparent;
+            cursor: pointer;
+        }
+        .drawer-trigger:hover, .drawer-trigger.active { background: var(--primary-blue); color: white; }
+        .drawer-trigger span { margin-left: 8px; transition: transform 0.3s; }
+        .drawer-trigger.active span { transform: rotate(180deg); }
+        
+        .drawer-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background-color: #f9f9f9; 
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+        .drawer-inner { padding: 20px; border-top: 1px solid #eee; }
+
+        .back-link-container { text-align: center; padding: 40px 0 60px; }
+        .back-link { 
+            display: inline-block; padding: 12px 30px; 
+            background-color: var(--solar-orange); color: var(--white) !important; 
+            border-radius: 5px; font-size: 1.1rem; font-weight: bold; 
+            transition: background-color 0.3s;
+        }
+        .back-link:hover { background-color: #e65c00;}
     </style>
 </head>
 <body>
@@ -45,39 +114,96 @@
 
     <div class="vision-hero">
         <h1>永續能源的無限可能</h1>
-        <p>我們對抗的不是競速，而是世界的能源危機</p>
+        <p>結合全球淨零趨勢，致力綠電循環與永續未來</p>
     </div>
 
     <div class="container">
-        <img src="https://placehold.co/1000x450/003366/ffffff?text=Green+Energy+Vision" alt="綠能願景圖" class="main-img"> 
+        <!-- 替換為綠能相關的意象圖 -->
+        <img src="https://placehold.co/1000x450/003366/ffffff?text=Sustainable+Energy+&+Future+Mobility" alt="綠能願景圖" class="main-img"> 
 
-        <h2>零碳排移動的實踐者</h2>
-        <p style="font-size: 1.1rem; margin-bottom: 40px;">
-            阿波羅太陽能車隊的存在，不僅是為了在賽場上奪得榮譽，更是為了展示未來交通工具的雛形。每一代車輛的進化，都是在探索如何以最少的能源，達成最遠的里程，真正將永續理念融入工程實踐。
+        <div class="intro-text">
+            <p>
+                <strong>全球氣候急速變化，多數國家已訂定「2050 淨零排放」目標。</strong><br>
+                台灣正以四大轉型及十二項關鍵戰略主動承擔減碳責任，其中「太陽能光電」與「電動車」正是落實淨零轉型的重要領域。
+                <br><br>
+                自 1998 年艾和昌教授成立阿波羅太陽能車隊以來，我們深知太陽能電動車獨特的「分散式自主發電」及「儲能」優勢。從第一代到現在，阿波羅車隊不僅是技術的傳承，更是一群來自高雄科技大學不同科系的熱血青年，為了實現「創能、儲能、節能、智能」的永續夢想而跨域合作。
+            </p>
+        </div>
+
+        <h2 class="section-title">ESG 與 SDGs 的實踐者</h2>
+        <p style="margin-bottom: 30px; font-size: 1.1rem;">
+            響應聯合國 17 項「2030 永續發展目標」(SDGs)，我們將環境永續、社會參與及公司治理的 ESG 精神融入車隊營運與技術研發中。
         </p>
 
         <div class="value-card">
-            <h3>☀️ 極致的能源效率</h3>
-            <p>我們的核心目標是最大化太陽能板的功率輸出，同時最小化驅動系統和車身結構的能量消耗。這要求對空氣動力學、材料科學和電力電子學進行頂尖的整合與創新。</p>
-            <img src="https://placehold.co/800x400/003366/ffffff?text=Energy+Efficiency+%2F+Aerodynamics" alt="能源效率設計圖"> 
+            <h3>🌍 環境永續 (Environment)</h3>
+            <p>我們的核心目標是打造零碳排的移動載具。透過研發高效率太陽能電動車，我們直接回應了 SDGs 第 7 項（可負擔的潔淨能源）與第 13 項（氣候行動）。</p>
+            <ul>
+                <li><strong>創能：</strong>極大化車體太陽能板的光電轉換效率。</li>
+                <li><strong>節能：</strong>透過輕量化複合材料與低風阻設計，減少行駛耗能。</li>
+                <li><strong>趨勢接軌：</strong>如同特斯拉於 2023 年推出太陽能充電功能，我們早已在此領域深耕多年，探索太陽光電與電動車結合的無限可能。</li>
+            </ul>
         </div>
 
         <div class="value-card">
-            <h3>🔬 前瞻的電池管理技術 (BMS)</h3>
-            <p>高效的電力系統是太陽能車的生命線。我們自主研發的電池管理系統能精確監測、平衡和保護鋰電池組，確保在極端環境下也能發揮最大續航力，這也是未來電動車發展的關鍵技術。</p>
-            <img src="https://placehold.co/800x400/ff6600/ffffff?text=Battery+Management+System+(BMS)" alt="電池管理系統圖"> 
+            <h3>🤝 社會參與 (Social)</h3>
+            <p>阿波羅車隊不只在實驗室裡造車，更積極走入社會，透過教育推廣將綠能種子向下扎根。</p>
+            
+            <button class="drawer-trigger" onclick="toggleDrawer(this)">📸 查看科普推廣活動 <span>▼</span></button>
+            <div class="drawer-content"><div class="drawer-inner">
+                <p><strong>綠能教育推廣重點：</strong></p>
+                <ul>
+                    <li><strong>高中職太陽能模型車競賽：</strong>每年暑假舉辦，融入 STEAM 教育精神，引導學生從科學、技術、工程、數學面向進行批判性思考。競賽包含筆試、車檢、動態測試與面試，全方位培養人才。</li>
+                    <li><strong>南科親子挑戰營：</strong>與國科會南科管理局合作，針對國中小學生（含偏鄉）舉辦。透過 DIY 太陽能車、船及 3D 紙雕，讓親子在遊戲中學習綠電知識。</li>
+                    <li><strong>多元科普活動：</strong>參與高雄市教育節、衛武營 OPEN HOUSE、科工館技職展等，向大眾傳遞淨零排放觀念。</li>
+                </ul>
+                <img src="https://placehold.co/800x300/eef2f5/333333?text=STEM+Education+Activities" alt="科普教育活動">
+            </div></div>
         </div>
+
+        <div class="value-card">
+            <h3>🏫 人才培育與產學合作 (Governance)</h3>
+            <p>車隊成員由跨領域的大學生組成，一代傳一代，建立了完善的技術傳承與知識管理體系。我們在校內設有多個專業實驗室，並積極與產業界合作。</p>
+            <ul>
+                <li><strong>研發場域：</strong>熱流光學可視化實驗室、太陽電池模組封裝實驗室、複合材料結構實驗室、電動車底盤動力計。</li>
+                <li><strong>產學加速：</strong>針對可自主發電的關鍵技術進行研發，培育具備實戰能力的綠領人才，加速學界技術與產業界需求的對接。</li>
+            </ul>
+        </div>
+
+        <h2 class="section-title">技術特點：創能、儲能、節能、智能</h2>
         
         <div class="value-card">
-            <h3>♻️ 輕量化與循環材料</h3>
-            <p>從 Apollo IV 開始，我們大量採用碳纖維等複合材料，大幅減輕車重。我們也持續研究和應用更環保、更易於回收的材料，以體現真正的永續工程理念。</p>
-            <img src="https://placehold.co/800x400/000000/ffffff?text=Carbon+Fiber+Structure" alt="碳纖維結構圖"> 
+            <h3>☀️ 太陽能光電與電動車的完美結合</h3>
+            <p>阿波羅太陽能車隊長期鑽研四大技術面向，致力於解決能源危機：</p>
+            <ul>
+                <li><strong>創能 (Energy Creation)：</strong>利用車頂高效率太陽能模組，實現行駛中自主充電。</li>
+                <li><strong>儲能 (Energy Storage)：</strong>開發先進電池管理系統 (BMS)，確保電能的高效儲存與安全釋放。</li>
+                <li><strong>節能 (Energy Saving)：</strong>運用碳纖維複材打造超輕量車體，結合低滾阻輪胎與流線外型。</li>
+                <li><strong>智能 (Smart Technology)：</strong>整合車聯網與 AI 輔助駕駛，優化行駛策略以達到最佳能耗比。</li>
+            </ul>
+            <img src="https://placehold.co/800x400/003366/ffffff?text=Apollo+Solar+Car+Tech" alt="阿波羅太陽能車技術圖解"> 
         </div>
         
-        <div style="text-align: center; padding-top: 30px; padding-bottom: 50px;">
-            <a href="index.html#about" style="color: var(--primary-blue); font-weight: bold; font-size: 1.2rem;">« 返回 關於我們 區塊</a>
+        <div class="back-link-container">
+            <a href="index.html#about" class="back-link">« 返回 關於我們 區塊</a>
         </div>
     </div>
-</body>
 
+    <script>
+        function toggleDrawer(button) {
+            const content = button.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                button.classList.remove('active');
+                const icon = button.querySelector('span');
+                if(icon) icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                button.classList.add('active');
+                const icon = button.querySelector('span');
+                if(icon) icon.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
+</body>
 </html>
