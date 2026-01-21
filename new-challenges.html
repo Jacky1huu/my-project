@@ -3,26 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>挑戰新賽事與級別 - NKUST Apollo 核心理念</title> 
+    <title>Apollo IX 環島計畫 - NKUST Apollo 核心理念</title> 
     <style>
-        /* CSS 樣式與 tech-breakthrough.html 相同 */
-        :root {--primary-blue: #003366;--solar-orange: #ff6600;--carbon-black: #1a1a1a;--light-gray: #f4f4f4;--white: #ffffff;}
-        body { font-family: 'Noto Sans TC', sans-serif; line-height: 1.7; background-color: var(--light-gray); color: var(--carbon-black); margin: 0; padding: 0;}
+        /* --- 全域設定 --- */
+        :root {
+            --primary-blue: #003366;
+            --solar-orange: #ff6600;
+            --carbon-black: #1a1a1a;
+            --light-gray: #f4f4f4;
+            --white: #ffffff;
+            --accent-green: #2ecc71; /* 用於強調綠能環島 */
+        }
+        body { font-family: 'Noto Sans TC', sans-serif; line-height: 1.8; background-color: var(--light-gray); color: var(--carbon-black); margin: 0; padding: 0;}
         .container { max-width: 1000px; margin: 0 auto; padding: 20px;}
-        .header { background-color: var(--primary-blue); color: white; padding: 15px 0; text-align: center; }
+        
+        /* --- Header --- */
+        .header { background-color: var(--primary-blue); color: white; padding: 15px 0; text-align: center; position: sticky; top: 0; z-index: 100;}
         .header a { color: var(--solar-orange); text-decoration: none; font-weight: bold; margin-right: 20px; transition: color 0.3s;}
         .header a:hover { color: var(--white);}
-        .vision-hero { background-color: var(--carbon-black); color: white; padding: 50px 0; text-align: center; margin-bottom: 30px;}
-        .vision-hero h1 { font-size: 3rem; color: var(--solar-orange); margin-bottom: 15px; } 
-        .vision-hero p { font-size: 1.3rem; opacity: 0.9; }
-        .main-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); margin-bottom: 40px;}
-        .container h2 { color: var(--primary-blue); border-bottom: 3px solid var(--solar-orange); display: inline-block; padding-bottom: 8px; margin-bottom: 25px; font-size: 2rem;}
-        .value-card { background: var(--white); padding: 35px; border-radius: 12px; margin-bottom: 35px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; overflow: hidden;}
-        .value-card:hover, .value-card:active { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15);}
-        .value-card h3 { color: var(--primary-blue); border-left: 6px solid var(--solar-orange); padding-left: 15px; margin-bottom: 20px; font-size: 1.6rem; font-weight: bold;}
-        .value-card p {font-size: 1.05rem;}
-        .back-link { display: inline-block; padding: 10px 20px; background-color: var(--solar-orange); color: var(--white) !important; border-radius: 5px; font-size: 1.1rem; font-weight: bold; transition: background-color 0.3s;}
+
+        /* --- Hero Section --- */
+        .vision-hero { 
+            background: linear-gradient(135deg, var(--carbon-black) 0%, #162447 100%);
+            color: white; 
+            padding: 80px 0; 
+            text-align: center; 
+            margin-bottom: 30px;
+        }
+        .vision-hero h1 { font-size: 3rem; color: var(--solar-orange); margin-bottom: 15px; letter-spacing: 2px;} 
+        .vision-hero p { font-size: 1.3rem; opacity: 0.9; max-width: 800px; margin: 0 auto;}
+
+        /* --- Main Image --- */
+        .main-img { 
+            width: 100%; 
+            max-height: 450px; 
+            object-fit: cover; 
+            border-radius: 10px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+            filter: brightness(0.95);
+        }
+        
+        /* --- Section Styling --- */
+        .section-title {
+            color: var(--primary-blue);
+            border-bottom: 3px solid var(--solar-orange);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            margin-top: 40px;
+        }
+
+        .intro-text {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            border-left: 5px solid var(--accent-green);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* --- ✨ Route Cards (Horizontal Layout Redesign) ✨ --- */
+        .route-grid {
+            display: flex;
+            flex-direction: column; /* 垂直堆疊每個橫向卡片 */
+            gap: 20px;
+        }
+
+        /* 將卡片改為 Grid 佈局以實現橫向排列 */
+        .value-card { 
+            background: var(--white); 
+            padding: 25px 35px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden; 
+            
+            /* 關鍵改變：桌面版使用 Grid 讓內容橫向排列 */
+            display: grid;
+            grid-template-columns: 200px 1fr auto; /* 標題 | 內容 | 按鈕 */
+            grid-template-rows: auto auto; /* 第一列內容，第二列抽屜 */
+            align-items: center; /* 垂直置中 */
+            gap: 0 30px; /* 欄位間距 */
+            
+            border-left: 6px solid var(--solar-orange); /* 改為左側邊條，更有列表感 */
+        }
+        
+        .value-card:hover { 
+            transform: translateX(5px); /* 改為向右微動 */
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .value-card h3 { 
+            color: var(--primary-blue); 
+            margin-bottom: 0; /* 移除下方間距，因為是橫向 */
+            font-size: 1.3rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            grid-column: 1 / 2; /* 第一欄 */
+        }
+        
+        .number-badge {
+            background: var(--solar-orange);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .value-card p { 
+            font-size: 1.05rem; 
+            color: #555; 
+            margin-bottom: 0; /* 移除下方間距 */
+            grid-column: 2 / 3; /* 第二欄 */
+            line-height: 1.6;
+        }
+
+        /* 按鈕樣式調整 */
+        .drawer-trigger {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            border: 1px solid var(--primary-blue);
+            padding: 8px 25px;
+            border-radius: 30px;
+            background: transparent;
+            cursor: pointer;
+            margin-top: 0; /* 移除上方間距 */
+            grid-column: 3 / 4; /* 第三欄 */
+            white-space: nowrap; /* 不換行 */
+        }
+        
+        .drawer-trigger:hover { background: var(--primary-blue); color: white; }
+        .drawer-trigger span { margin-left: 8px; transition: transform 0.3s; }
+        .drawer-trigger.active { background: var(--primary-blue); color: white; }
+        .drawer-trigger.active span { transform: rotate(180deg); }
+
+        /* 抽屜內容 */
+        .drawer-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background-color: #f9f9f9; 
+            border-radius: 8px;
+            
+            /* 關鍵：抽屜佔滿下一行 */
+            grid-column: 1 / -1; 
+            grid-row: 2 / 3;
+            margin-top: 0; /* 由 padding 控制 */
+        }
+        
+        /* 當抽屜打開時增加一點間距 */
+        .drawer-content.open {
+            margin-top: 20px;
+        }
+
+        .drawer-inner { padding: 20px; border-top: 1px solid #eee; }
+        
+        .photo-box img {
+            width: 100%;
+            height: 250px; /* 加大圖片高度 */
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 5px;
+        }
+        .photo-caption { font-size: 0.9rem; color: #666; text-align: center; font-weight: bold; }
+
+        .back-link { 
+            display: inline-block; padding: 10px 30px; 
+            background-color: var(--solar-orange); color: var(--white) !important; 
+            border-radius: 5px; font-size: 1.1rem; font-weight: bold; 
+            transition: background-color 0.3s;
+            margin-top: 40px;
+        }
         .back-link:hover { background-color: #e65c00;}
+
+        /* --- Map Section --- */
+        .map-section {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 0;
+        }
+
+        .map-trigger {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border: none;
+            padding: 25px 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            border-left: 6px solid var(--accent-green); 
+        }
+
+        .map-trigger:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .map-trigger-content { text-align: left; z-index: 2; }
+        .map-trigger-title { font-size: 1.4rem; font-weight: 800; color: var(--primary-blue); display: block; margin-bottom: 5px; }
+        .map-trigger-subtitle { font-size: 0.95rem; color: #666; display: block; }
+        .map-trigger-icon { font-size: 2rem; color: var(--solar-orange); background: rgba(255, 102, 0, 0.1); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.3s; }
+        .map-trigger.active .map-trigger-icon { transform: rotate(180deg); background: var(--solar-orange); color: white; }
+
+        .map-content-wrapper {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease-in-out;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 0 0 15px 15px; 
+            background: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .map-inner { padding: 30px; text-align: center; border-top: 1px dashed #eee; }
+        .map-img { max-width: 100%; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 15px; }
+        .map-legend { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 15px; font-size: 0.9rem; color: #555; }
+        .legend-item { display: flex; align-items: center; gap: 5px; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+        /* --- 📱 手機版響應式調整 --- */
+        @media (max-width: 768px) {
+            .value-card {
+                grid-template-columns: 1fr; /* 改回單欄堆疊 */
+                grid-template-rows: auto auto auto auto; /* 標題, 內容, 按鈕, 抽屜 */
+                text-align: left;
+                gap: 15px;
+                padding: 20px;
+            }
+            
+            .value-card h3 { grid-column: 1 / -1; margin-bottom: 5px; }
+            .value-card p { grid-column: 1 / -1; margin-bottom: 10px; }
+            .drawer-trigger { grid-column: 1 / -1; width: 100%; }
+            .drawer-content { grid-column: 1 / -1; grid-row: 4 / 5; }
+        }
+
     </style>
 </head>
 <body>
@@ -30,41 +268,149 @@
     <div class="header">
         <div class="container">
             <a href="index.html">« 返回主網站</a>
-            <span>| 挑戰新賽事與級別：詳細內容</span>
+            <span>| 挑戰新賽事：Apollo IX 環島計畫</span>
         </div>
     </div>
 
     <div class="vision-hero">
-        <h1>擴大全球競技版圖</h1>
-        <p>在國際舞台上持續挑戰自我，驗證車輛在不同極端條件下的穩定性。</p>
+        <h1>Apollo IX 環島計畫</h1>
+        <p>用太陽寫下一段繞行台灣的旅程</p>
     </div>
 
     <div class="container">
-        <img src="https://placehold.co/1000x450/000000/ffffff?text=New+Race+Challenges" alt="賽事挑戰願景圖" class="main-img"> 
+        <!-- 主視覺 -->
+        <img src="https://placehold.co/1000x450/003366/ffffff?text=Taiwan+Round+Island+Testing" alt="環島測試願景圖" class="main-img"> 
 
-        <h2>拓展國際賽事經驗</h2>
-        <p style="font-size: 1.1rem; margin-bottom: 40px;">
-            除了澳洲 BWSC 外，我們考慮參加其他地區如美國或歐洲的太陽能車挑戰賽。在不同氣候和賽制下驗證車輛的穩定性和適應性，累積更多國際經驗。
+        <div class="intro-text">
+            <p>
+                <strong>這不只是一次行駛挑戰，更是一場將太陽能車從競賽場域推向真實道路的實證行動。</strong>
+                <br><br>
+                作為團隊第九代車款，Apollo IX 將以環島行駛的方式，驗證太陽能車在多變地形、日照條件與實際交通環境中的續航能力。此計畫不僅是實證旅程，更是 <strong>Apollo X 的資料起點</strong>。透過蒐集真實數據（發電效率、能源消耗、行駛阻力），我們將回饋驗證前期模擬模型，為未來的「太陽能自適應智慧移動系統」奠定基礎。
+            </p>
+        </div>
+
+        <h2 class="section-title">商業化潛力與實地測試</h2>
+        <p style="margin-bottom: 30px; font-size: 1.1rem;">
+            全球太陽能車趨勢正從單人競賽型走向四人座城市型。Apollo IX Plus 已在澳洲完成 3,021 公里長征，但台灣的實際道路條件（多山、沿海、城市起停）與澳洲荒漠截然不同。我們需要這場「在地化」的測試，來評估台灣太陽能車商業化的可行性。
         </p>
 
-        <div class="value-card">
-            <h3>🇺🇸 參與美國太陽能挑戰賽</h3>
-            <p>考慮參加美國的 American Solar Challenge (ASC) 或 Formula Sun Grand Prix (FSGP) 賽事。在美國多變的公路和賽道條件下測試車輛的高速性能和電池熱管理能力。</p>
+        <h2 class="section-title">逆時針環島路線規劃</h2>
+        <p style="margin-bottom: 30px; color: #666; text-align: center;">
+            計畫以高雄為起點，採<strong>逆時針</strong>方向行駛，全程依地形與路況分為四大測試區段。點擊下方地圖可查看詳細路線：
+        </p>
+
+        <!-- 地圖抽屜 -->
+        <div class="map-section">
+            <button class="map-trigger" onclick="toggleMap(this)">
+                <div class="map-trigger-content">
+                    <span class="map-trigger-title">🗺️ 台灣環島路線全覽</span>
+                    <span class="map-trigger-subtitle">點擊展開查看 4 大測試區段分佈</span>
+                </div>
+                <div class="map-trigger-icon">▼</div>
+            </button>
+            <div class="map-content-wrapper">
+                <div class="map-inner">
+                    <img src="https://placehold.co/600x700/eef2f5/333333?text=Taiwan+Map+Visualization%0A(Counter-Clockwise)%0A%E2%AC%87%EF%B8%8F%0A1.+South+(Start)%0A2.+East%0A3.+North%0A4.+West" alt="台灣環島路線圖" class="map-img">
+                    <div class="map-legend">
+                        <div class="legend-item"><span class="dot" style="background:var(--solar-orange);"></span> 起點/終點 (高雄)</div>
+                        <div class="legend-item"><span class="dot" style="background:var(--accent-green);"></span> 逆時針行駛</div>
+                        <div class="legend-item"><span class="dot" style="background:var(--primary-blue);"></span> 測試路段</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="value-card">
-            <h3>🇪🇺 探索歐洲賽事機會</h3>
-            <p>研究歐洲太陽能車挑戰賽的規範，例如 European Solar Challenge，為車輛進行差異化調整，以適應歐洲地區的嚴格道路法規和多山地形挑戰。</p>
+        <div class="route-grid">
+            <!-- 1. 南部 -->
+            <div class="value-card">
+                <h3><span class="number-badge">1</span> 南部路段</h3>
+                <p><strong>高雄 ➝ 屏東 ➝ 台東</strong><br>此路段作為起點，重點在於測試車輛的懸吊系統與操控穩定性。屏鵝公路的側風與南迴公路的起伏，將作為整體結構耐受度的首波考驗。</p>
+                <button class="drawer-trigger" onclick="toggleDrawer(this)">📸 查看測試重點示意 <span>▼</span></button>
+                <div class="drawer-content"><div class="drawer-inner">
+                    <div class="photo-box">
+                        <img src="https://placehold.co/400x300/e0e0e0/333333?text=Suspension+Test" alt="懸吊測試示意">
+                        <div class="photo-caption">結構耐久與操控穩定性測試</div>
+                    </div>
+                </div></div>
+            </div>
+
+            <!-- 2. 東部 -->
+            <div class="value-card">
+                <h3><span class="number-badge">2</span> 東部路段</h3>
+                <p><strong>台東 ➝ 花蓮</strong><br>面對東部海岸線與縱谷地形。爬坡區段驗證動力輸出與瞬間能耗；長下坡則評估回充煞車效率。沿海強風將建立風能擾動對車身穩定的數據模型。</p>
+                <button class="drawer-trigger" onclick="toggleDrawer(this)">📸 查看地形挑戰 <span>▼</span></button>
+                <div class="drawer-content"><div class="drawer-inner">
+                    <div class="photo-box">
+                        <img src="https://placehold.co/400x300/e0e0e0/333333?text=Coastal+Wind" alt="海岸風場測試">
+                        <div class="photo-caption">側風穩定性與爬坡能耗驗證</div>
+                    </div>
+                </div></div>
+            </div>
+
+            <!-- 3. 北部 -->
+            <div class="value-card">
+                <h3><span class="number-badge">3</span> 北部路段</h3>
+                <p><strong>花蓮 ➝ 宜蘭 ➝ 台北 ➝ 桃園</strong><br>進入人口密集的都會區。測試紅綠燈頻繁起停（Stop-and-Go）對續航力的影響。此外，北部多雨氣候將是驗證車輛防水性與濕地行駛安全性的關鍵場域。</p>
+                <button class="drawer-trigger" onclick="toggleDrawer(this)">📸 查看都會測試 <span>▼</span></button>
+                <div class="drawer-content"><div class="drawer-inner">
+                    <div class="photo-box">
+                        <img src="https://placehold.co/400x300/e0e0e0/333333?text=Urban+Traffic" alt="都會行駛">
+                        <div class="photo-caption">都會區起停與防水測試</div>
+                    </div>
+                </div></div>
+            </div>
+
+            <!-- 4. 西部 -->
+            <div class="value-card">
+                <h3><span class="number-badge">4</span> 西部路段</h3>
+                <p><strong>桃園 ➝ 西部沿海 ➝ 高雄</strong><br>沿著西部濱海公路返航。這是測試高速巡航穩定性與發電效率的最佳路段。觀察在平地長距離行駛下的能耗曲線，優化動力管理策略。</p>
+                <button class="drawer-trigger" onclick="toggleDrawer(this)">📸 查看高速巡航 <span>▼</span></button>
+                <div class="drawer-content"><div class="drawer-inner">
+                    <div class="photo-box">
+                        <img src="https://placehold.co/400x300/e0e0e0/333333?text=Highway+Cruising" alt="高速巡航">
+                        <div class="photo-caption">高速穩定性與最佳能耗調校</div>
+                    </div>
+                </div></div>
+            </div>
         </div>
         
-        <div class="value-card">
-            <h3>📈 升級競速級別挑戰</h3>
-            <p>除了目前的巡洋艦級 (Cruiser Class) 外，我們將專注於競速級 (Challenger Class) 的技術發展，追求極致的單人效率設計，旨在衝擊世界紀錄，展現純粹的技術實力。</p>
-        </div>
-        
-        <div style="text-align: center; padding-top: 30px; padding-bottom: 50px;">
+        <div style="text-align: center; margin-top: 50px;">
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--primary-blue);">
+                「用一圈台灣，證明太陽能電動車是電動車的未來。」
+            </p>
             <a href="index.html#future" class="back-link">« 返回 未來展望 區塊</a>
         </div>
     </div>
+
+    <script>
+        function toggleDrawer(button) {
+            const content = button.nextElementSibling; // div.drawer-content
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                content.classList.remove('open'); // 移除 margin class
+                button.classList.remove('active');
+                const icon = button.querySelector('span');
+                if(icon) icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.classList.add('open'); // 加入 margin class
+                button.classList.add('active');
+                const icon = button.querySelector('span');
+                if(icon) icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        function toggleMap(button) {
+            const content = button.nextElementSibling; 
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                button.classList.remove('active');
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                button.classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
