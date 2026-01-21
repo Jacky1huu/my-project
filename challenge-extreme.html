@@ -3,34 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>挑戰極限 - 澳洲世界太陽能車挑戰賽</title>
+    <title>挑戰極限 - 世界太陽能車挑戰賽</title>
     <style>
-        /* 沿用網站的主題樣式 */
+        /* --- 全域設定 --- */
         :root {
             --primary-blue: #003366;
             --solar-orange: #ff6600;
             --carbon-black: #1a1a1a;
             --light-gray: #f4f4f4;
+            --white: #ffffff;
         }
-        body { font-family: 'Noto Sans TC', sans-serif; line-height: 1.7; background-color: var(--light-gray); color: var(--carbon-black); margin: 0; padding: 0;}
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px;}
-        .header { background-color: var(--primary-blue); color: white; padding: 15px 0; text-align: center; }
-        .header a { color: var(--solar-orange); text-decoration: none; font-weight: bold; margin-right: 20px; }
-        .vision-hero { background-color: var(--carbon-black); color: white; padding: 50px 0; text-align: center; margin-bottom: 30px;}
-        .vision-hero h1 { font-size: 3rem; color: var(--solar-orange); margin-bottom: 15px; }
-        .vision-hero p { font-size: 1.3rem; opacity: 0.9; }
-        .main-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); margin-bottom: 30px;}
+        body { 
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif; 
+            line-height: 1.8; /* 增加行高提升可讀性 */
+            background-color: var(--light-gray); 
+            color: #333; 
+            margin: 0; 
+            padding: 0;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px;} /* 加寬容器 */
         
-        .value-card { background: white; padding: 30px; border-radius: 8px; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
-        .value-card h3 { color: var(--primary-blue); border-left: 4px solid var(--solar-orange); padding-left: 10px; margin-bottom: 15px; }
+        /* --- Header --- */
+        .header { background-color: var(--primary-blue); color: white; padding: 15px 0; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
+        .header a { color: var(--solar-orange); text-decoration: none; font-weight: bold; margin-right: 20px; transition: color 0.3s; }
+        .header a:hover { color: var(--white); }
+        
+        /* --- Hero Section --- */
+        .vision-hero { 
+            background: linear-gradient(135deg, var(--carbon-black) 0%, #2c3e50 100%);
+            color: white; 
+            padding: 80px 0; 
+            text-align: center; 
+            margin-bottom: 50px;
+        }
+        .vision-hero h1 { 
+            font-size: 3.2rem; 
+            color: var(--solar-orange); 
+            margin-bottom: 15px; 
+            letter-spacing: 2px; 
+            font-weight: 800;
+        }
+        .vision-hero p { font-size: 1.4rem; opacity: 0.9; font-weight: 300;}
+        
+        /* --- Main Image --- */
+        .main-img { 
+            width: 100%; 
+            max-height: 550px; 
+            object-fit: cover; 
+            border-radius: 12px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3); 
+            margin-bottom: 60px;
+        }
+        
+        /* --- Intro Section --- */
+        .content-section { margin-bottom: 60px; text-align: center; }
+        .content-section h2 {
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--solar-orange);
+            border-radius: 2px;
+        }
 
-        /* 確保卡片內的圖片樣式一致 */
+        .intro-text {
+            font-size: 1.15rem;
+            line-height: 2;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            text-align: justify; /* 兩端對齊 */
+            max-width: 900px;
+            margin: 0 auto;
+            border-top: 5px solid var(--primary-blue);
+        }
+
+        /* --- Cards Layout (Responsive) --- */
+        .value-card { 
+            background: white; 
+            padding: 0; /* 清除內距，改由內部控制 */
+            border-radius: 15px; 
+            margin-bottom: 50px; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden; /* 確保圖片不溢出圓角 */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .value-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
+        }
+
+        .card-content {
+            padding: 35px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-image-wrapper {
+            width: 100%;
+            height: 300px; /* 手機版預設高度 */
+            overflow: hidden;
+        }
+
         .value-card img {
             width: 100%; 
-            height: auto;
-            border-radius: 6px;
-            margin-top: 15px; 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .value-card:hover img { transform: scale(1.05); }
+        
+        .value-card h3 { 
+            color: var(--primary-blue); 
+            margin-bottom: 20px; 
+            font-size: 1.8rem;
+            font-weight: 800;
+            position: relative;
+            padding-left: 15px;
+            border-left: 6px solid var(--solar-orange);
+        }
+        
+        .value-card p {
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        /* --- 特殊樣式：強調徽章 --- */
+        .highlight-badge {
+            background-color: rgba(255, 102, 0, 0.1);
+            color: var(--solar-orange);
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin: 0 2px;
+        }
+
+        /* --- 列表優化 --- */
+        .styled-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        .styled-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            color: #444;
+        }
+        .styled-list li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: var(--solar-orange);
+            font-weight: bold;
+        }
+
+        /* --- Desktop Layout (Alternating) --- */
+        @media (min-width: 900px) {
+            .value-card {
+                flex-direction: row;
+                min-height: 380px;
+            }
+            
+            /* 偶數卡片：圖片在左，文字在右 (預設 row) */
+            .value-card:nth-child(even) .card-image-wrapper {
+                width: 45%;
+                height: auto; /* 自動填滿高度 */
+                order: 1;
+            }
+            .value-card:nth-child(even) .card-content {
+                width: 55%;
+                order: 2;
+            }
+
+            /* 奇數卡片：文字在左，圖片在右 (row-reverse) */
+            .value-card:nth-child(odd) {
+                flex-direction: row-reverse;
+            }
+            .value-card:nth-child(odd) .card-image-wrapper {
+                width: 45%;
+                height: auto;
+                order: 2;
+            }
+            .value-card:nth-child(odd) .card-content {
+                width: 55%;
+                order: 1;
+            }
+        }
+
+        /* Back Link */
+        .back-link { 
+            display: inline-block; padding: 12px 35px; 
+            background-color: var(--solar-orange); color: var(--white) !important; 
+            border-radius: 50px; font-size: 1.1rem; font-weight: bold; 
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+        }
+        .back-link:hover { 
+            background-color: #e65c00; 
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 102, 0, 0.4);
         }
     </style>
 </head>
@@ -45,39 +238,80 @@
 
     <div class="vision-hero">
         <h1>征服荒漠：3000 公里的終極考驗</h1>
-        <p>在世界舞台上，證明台灣太陽能技術的頂尖實力</p>
+        <p>BWSC 2025 戰績全紀錄 — 從寒冬逆境到春日榮耀</p>
     </div>
 
     <div class="container">
-        <img src="https://placehold.co/1000x450/ff6600/003366?text=World+Solar+Challenge+Route" alt="澳洲賽事路線圖" class="main-img"> 
+        <!-- 主視覺 -->
+        <img src="image_1d650b.jpg" alt="澳洲賽事主視覺" class="main-img"> 
 
-        <h2>世界太陽能車挑戰賽 (BWSC)</h2>
-        <p style="font-size: 1.1rem; margin-bottom: 40px;">
-            BWSC 是世界上最具挑戰性的太陽能車賽事，每兩年在澳洲舉行。車隊必須橫跨澳洲大陸 3,021 公里，從達爾文一路南下到達阿得雷德。這不僅是速度的較量，更是工程可靠性、能源策略規劃和團隊意志力的極限挑戰。
-        </p>
-
-        <div class="value-card">
-            <h3>🌡️ 極端氣候與環境</h3>
-            <p>在澳洲內陸，白天的氣溫可高達 40°C 以上，對太陽能板的散熱、電池穩定性和駕駛員的耐力都是巨大的考驗。車隊必須隨時應對突變的天氣，調整行駛和充電策略。</p>
-            <img src="https://placehold.co/800x400/1a1a1a/ff6600?text=Extreme+Desert+Conditions" alt="澳洲荒漠極端氣候圖"> 
+        <div class="content-section">
+            <h2>世界太陽能車挑戰賽 (WSC)</h2>
+            <div class="intro-text">
+                <p>全球共有 6 大太陽能車賽事，分別在不同地域舉辦。其中，<strong>「世界太陽能車挑戰賽」(World Solar Challenge, WSC)</strong> 開辦已有 38 年歷史，挑戰全程 3000 公里。路途多為荒蕪區域，選手需面對白天高達 <span class="highlight-badge">40°C</span> 的高溫、強勁側風，甚至夜間的野生動物。這是全球頂尖且參賽國家隊伍最多的太陽能電動車賽事，也是檢驗綠能技術的最高殿堂。</p>
+            </div>
         </div>
 
+        <!-- 區塊 1 -->
         <div class="value-card">
-            <h3>🧭 策略決策與即時通訊</h3>
-            <p>比賽期間，策略組必須根據天氣預報、雲層移動、交通狀況，透過無線電與駕駛員保持即時通訊，決定最佳的行駛速度、充電時間和停車點，是場分秒必爭的智慧戰。</p>
-            <img src="https://placehold.co/800x400/003366/ffffff?text=Strategy+Team+in+Action" alt="策略控制中心圖"> 
+            <div class="card-image-wrapper">
+                <img src="image_1d6529.jpg" alt="3000公里長征示意">
+            </div>
+            <div class="card-content">
+                <h3>🏁 3000 公里的征途：BWSC 2025</h3>
+                <p>團隊參加 2025 年普利司通世界太陽能車挑戰賽 (BWSC 2025)，與來自世界各地的頂尖學子競爭與學習。這場由澳洲北部的達爾文 (Darwin) 出發，一路向南至阿德雷得 (Adelaide) 的道路賽，路程總長約 <span class="highlight-badge">3,021 公里</span>，是測試各車隊技術與意志力的終極舞台。</p>
+            </div>
+        </div>
+
+        <!-- 區塊 2 -->
+        <div class="value-card">
+            <div class="card-image-wrapper">
+                <img src="image_1d6545.jpg" alt="車輛安全檢查">
+            </div>
+            <div class="card-content">
+                <h3>🔍 嚴格把關：道路前的安全檢查</h3>
+                <p>競賽前，大會聘請專家、學者及監理人員進行嚴格的靜態與動態安全檢查。團隊在專業指導下不斷修正，確保車輛以最佳狀態上路。檢查項目包含：</p>
+                <ul class="styled-list">
+                    <li>機械五金分析與車輛設計報告</li>
+                    <li>駕駛緊急逃生與電池保護裝置</li>
+                    <li>高速緊急煞車與動態繞錐測試</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 區塊 3 -->
+        <div class="value-card">
+            <div class="card-image-wrapper">
+                <img src="image_1d656b.png" alt="團隊合作與車隊">
+            </div>
+            <div class="card-content">
+                <h3>🤝 路途中的夥伴：團隊合作</h3>
+                <p>這是一場團體戰。除了太陽能車外，其餘成員分乘於車隊中的支援車輛，扮演<strong>偵查、前導、後衛與後勤</strong>等不同角色。大家相互合作，為太陽能車提供前進的助力，共同克服海內外繁瑣的測試程序與路程中的突發狀況。</p>
+            </div>
         </div>
         
-        <div class="value-card">
-            <h3>🛣️ 長距離的可靠性考驗</h3>
-            <p>3000 公里的賽程是對車輛結構、電機系統和輪胎的最終檢驗。車隊成員必須具備快速維修和排除故障的能力，確保車輛在連續多日的長途行駛中能夠維持高效率運轉。</p>
-            <img src="https://placehold.co/800x400/ff6600/003366?text=Vehicle+Reliability+Test" alt="車輛維修檢查圖"> 
+        <!-- 區塊 4 (重點) -->
+        <div class="value-card" style="border-top: 5px solid var(--solar-orange);">
+            <div class="card-image-wrapper">
+                <img src="image_1d658b.jpg" alt="Apollo IX Plus 賽道英姿">
+            </div>
+            <div class="card-content">
+                <h3>❄️ 寒冬過後的暖陽：Apollo IX Plus</h3>
+                <p>BWSC 2025 首次於澳洲冬末初春舉辦。阿波羅參加的 Cruiser 組不僅講求能耗，更引入「綠色主流」概念。吸取兩年前的經驗，我們對底盤與電力系統進行全面優化。</p>
+                <ul class="styled-list">
+                    <li>Hidden Valley 賽車場奪下<strong>全場第九名、巡航組第二名</strong></li>
+                    <li>極具辨識度的外觀成為賽道焦點</li>
+                    <li>面對冬季強烈側風、傾盆大雨與冰雹的極端氣候挑戰</li>
+                </ul>
+                <p style="margin-top: 15px; border-top: 1px dashed #ddd; padding-top: 15px;">
+                    雖然在距離終點僅剩 70 公里時因電量耗盡惜敗，最終名列 <span class="highlight-badge" style="font-size: 1.2rem;">世界第四</span>，但這段旅程見證了團隊在逆境中調整策略、克服困難的堅韌精神。
+                </p>
+            </div>
         </div>
         
         <div style="text-align: center; padding-top: 30px; padding-bottom: 50px;">
-            <a href="index.html#about" style="color: var(--primary-blue); font-weight: bold; font-size: 1.2rem;">« 返回 關於我們 區塊</a>
+            <a href="index.html#about" class="back-link">« 返回 關於我們 區塊</a>
         </div>
     </div>
 </body>
-
 </html>
