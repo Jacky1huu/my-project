@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>公眾教育與推廣 - NKUST Apollo 核心理念</title> 
     <style>
-        /* CSS 樣式與 tech-breakthrough.html 相同 */
+        /* --- 基礎 CSS (保持不變) --- */
         :root {--primary-blue: #003366;--solar-orange: #ff6600;--carbon-black: #1a1a1a;--light-gray: #f4f4f4;--white: #ffffff;}
         body { font-family: 'Noto Sans TC', sans-serif; line-height: 1.7; background-color: var(--light-gray); color: var(--carbon-black); margin: 0; padding: 0;}
         .container { max-width: 1000px; margin: 0 auto; padding: 20px;}
@@ -17,12 +17,97 @@
         .vision-hero p { font-size: 1.3rem; opacity: 0.9; }
         .main-img { width: 100%; max-height: 450px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); margin-bottom: 40px;}
         .container h2 { color: var(--primary-blue); border-bottom: 3px solid var(--solar-orange); display: inline-block; padding-bottom: 8px; margin-bottom: 25px; font-size: 2rem;}
+        
+        /* --- 卡片樣式 --- */
         .value-card { background: var(--white); padding: 35px; border-radius: 12px; margin-bottom: 35px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; overflow: hidden;}
-        .value-card:hover, .value-card:active { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15);}
+        .value-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15);}
         .value-card h3 { color: var(--primary-blue); border-left: 6px solid var(--solar-orange); padding-left: 15px; margin-bottom: 20px; font-size: 1.6rem; font-weight: bold;}
-        .value-card p {font-size: 1.05rem;}
+        .value-card p {font-size: 1.05rem; margin-bottom: 15px;}
+        .value-card ul { padding-left: 20px; margin-bottom: 20px; }
+        .value-card li { margin-bottom: 8px; list-style-type: disc; color: #444; }
+
         .back-link { display: inline-block; padding: 10px 20px; background-color: var(--solar-orange); color: var(--white) !important; border-radius: 5px; font-size: 1.1rem; font-weight: bold; transition: background-color 0.3s;}
         .back-link:hover { background-color: #e65c00;}
+
+        /* --- 🔥 照片抽屜樣式 --- */
+        .drawer-trigger {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-blue);
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            border: 1px solid var(--primary-blue);
+            padding: 8px 20px;
+            border-radius: 30px;
+            background: transparent;
+            cursor: pointer;
+        }
+        
+        .drawer-trigger:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .drawer-trigger span {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+
+        .drawer-trigger.active {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .drawer-trigger.active span {
+            transform: rotate(180deg);
+        }
+
+        .drawer-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out; /* 平滑展開動畫 */
+            background-color: #f9f9f9; 
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .drawer-inner {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .photo-item {
+            position: relative;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .photo-caption {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 5px;
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
@@ -35,36 +120,182 @@
     </div>
 
     <div class="vision-hero">
-        <h1>點燃綠色科技的火花</h1>
-        <p>從校園出發，向大眾普及再生能源知識和工程實作精神。</p>
+        <h1>扎根 STEAM 教育，推動綠能永續</h1>
+        <p>從高中職競賽到親子手作挑戰，全面培育未來的綠色科技人才。</p>
     </div>
 
     <div class="container">
-        <img src="https://placehold.co/1000x450/1a1a1a/ffffff?text=Public+Education+and+Outreach" alt="教育推廣願景圖" class="main-img"> 
+        <img src="https://placehold.co/1000x450/1a1a1a/ffffff?text=Green+Energy+Education+&+Outreach" alt="綠能教育推廣活動" class="main-img"> 
 
-        <h2>寓教於樂的科學傳播</h2>
+        <h2>全方位綠能教育推廣</h2>
         <p style="font-size: 1.1rem; margin-bottom: 40px;">
-            我們透過舉辦太陽能車科普展覽和校園講座，提高大眾對於再生能源和工程實作的興趣，並鼓勵更多年輕學子加入綠色科技的行列。
+            阿波羅車隊不只致力於技術研發，更積極投入科普教育。透過舉辦全國性競賽、親子營隊及參與大型科普活動，我們引導學生進行批判性思考，並將淨零碳排的永續概念深植於下一代心中。
         </p>
 
+        <!-- 卡片 1 -->
         <div class="value-card">
-            <h3>🧑‍🔬 太陽能車科普巡迴展</h3>
-            <p>定期在全台各級學校、科學館舉辦車輛實體展出及原理講解。讓學生近距離接觸尖端綠色科技，親身感受太陽能車的設計與製造工藝。</p>
+            <h3>🏎️ 全國高中職太陽能模型車競賽 (STEAM 教育)</h3>
+            <p>每年暑假舉辦的指標性賽事，至今已歷 20 屆，累積八千餘名學生參與。引導學生從科學、技術、工程、數學等方面進行批判性思考，學習並運用跨域的知識技能。</p>
+            <ul>
+                <li><strong>競賽考核：</strong>包含筆試、車輛檢查、車輛測試、工程報告、面試等，全面檢驗學生能力。</li>
+                <li><strong>核心素養：</strong>除技術外，學生需規劃團隊進程、選用材料，並深植環境永續與團隊合作概念。</li>
+                <li><strong>國際榮耀：</strong>自 2008 年起，優勝隊伍獲大會推薦代表台灣參加澳洲 AIMSC 總決賽，屢次在澳洲世界大賽爭光，讓世界看見台灣！</li>
+            </ul>
+
+            <!-- 抽屜按鈕 -->
+            <button class="drawer-trigger" onclick="toggleDrawer(this)">
+                📸 查看競賽花絮 <span>▼</span>
+            </button>
+            
+            <!-- 抽屜內容 -->
+            <div class="drawer-content">
+                <div class="drawer-inner">
+                    <div class="photo-grid">
+                        <div class="photo-item">
+                            <img src="https://placehold.co/400x300/e0e0e0/333333?text=Competition+Start" alt="競賽起跑">
+                            <div class="photo-caption">激烈的競賽起跑瞬間</div>
+                        </div>
+                        <div class="photo-item">
+                            <img src="https://placehold.co/400x300/e0e0e0/333333?text=Design+Review" alt="車輛檢查">
+                            <div class="photo-caption">嚴謹的車輛規格檢查</div>
+                        </div>
+                        <div class="photo-item">
+                            <img src="https://placehold.co/400x300/e0e0e0/333333?text=Student+Team" alt="學生團隊">
+                            <div class="photo-caption">學生團隊專注討論戰術</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <!-- 卡片 2 -->
         <div class="value-card">
-            <h3>🗣 校園與社區講座</h3>
-            <p>車隊成員分享從設計、製造到國際參賽的完整經驗，鼓勵學生勇敢嘗試跨領域學習，激發他們對科學、技術、工程和數學 (STEM) 領域的興趣。</p>
+            <h3>👨‍👩‍👧‍👦 南科太陽能模型車親子挑戰營 (向下扎根)</h3>
+            <p>艾和昌教授與車隊成員攜手國科會南科管理局，針對台南、高雄及屏東縣市國中小學生（含偏遠地區），於每年 10~11 月舉辦。</p>
+            <ul>
+                <li><strong>活動內容：</strong>綠能教具互動、科教產品展示，以及趣味闖關遊戲。</li>
+                <li><strong>手作 DIY：</strong>太陽能車、太陽能船、太陽能水陸兩用車及 3D 紙雕藝術製作。</li>
+                <li><strong>教育目標：</strong>讓家長和小朋友享受手作樂趣，同時獲得再生能源知識與淨零碳排觀念。</li>
+            </ul>
+
+            <button class="drawer-trigger" onclick="toggleDrawer(this)">
+                📸 查看親子營精彩照片 <span>▼</span>
+            </button>
+            
+            <div class="drawer-content">
+                <div class="drawer-inner">
+                    <div class="photo-grid">
+                        <div class="photo-item">
+                            <img src="https://placehold.co/400x300/ffefd5/333333?text=DIY+Workshop" alt="DIY 手作">
+                            <div class="photo-caption">小朋友專注組裝太陽能車</div>
+                        </div>
+                        <div class="photo-item">
+                            <img src="https://placehold.co/400x300/ffefd5/333333?text=Parent+Child" alt="親子互動">
+                            <div class="photo-caption">家長與孩子共同完成作品</div>
+                        </div>
+                         <div class="photo-item">
+                            <img src="https://placehold.co/400x300/ffefd5/333333?text=Outdoor+Test" alt="戶外測試">
+                            <div class="photo-caption">戶外陽光下測試模型車</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
+        <!-- 卡片 3 -->
         <div class="value-card">
-            <h3>💻 線上教育資源開發</h3>
-            <p>製作太陽能車設計原理、能源效率計算和複合材料加工等相關的線上教材和影片，打破地域限制，讓更多公眾能夠獲得高品質的綠色工程教育資源。</p>
+            <h3>📢 多元科普推廣活動 (向外推廣)</h3>
+            <p>除固定活動外，艾教授及車隊成員積極參與各界活動，推動綠能發展、向外擴散淨零排放永續概念，並同步推廣技職教育。</p>
+            <ul>
+                <li><strong>高雄市政府：</strong>「教育節-學市集」太陽能光電推廣。</li>
+                <li><strong>衛武營：</strong>「OPEN HOUSE」DIY 製作。</li>
+                <li><strong>和春文教基金會：</strong>「綠能志工大會師」太陽能光電推廣。</li>
+                <li><strong>科工館：</strong>「技職新視界」常設展。</li>
+            </ul>
+
+            <button class="drawer-trigger" onclick="toggleDrawer(this)">
+                📸 查看推廣活動紀錄 <span>▼</span>
+            </button>
+
+            <div class="drawer-content">
+                <div class="drawer-inner">
+                    <div class="photo-grid">
+                        <div class="photo-item">
+                            <img src="https://placehold.co/400x300/e6f7ff/333333?text=Exhibition" alt="展覽解說">
+                            <div class="photo-caption">車隊成員向民眾解說原理</div>
+                        </div>
+                        <div class="photo-item">
+                            <img src="https://placehold.co/400x300/e6f7ff/333333?text=Public+Demo" alt="公開展示">
+                            <div class="photo-caption">衛武營公開展示活動</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 卡片 4 -->
+        <div class="value-card">
+            <h3>🌏 國際交流與參訪 (接軌世界)</h3>
+            <p>我們的教育成果吸引了國內外專業機構的關注與參訪，促進了技術與文化的深度交流。</p>
+            <ul>
+                <li><strong>加拿大專業人士參訪</strong></li>
+                <li><strong>義大國際高中國小部參訪</strong></li>
+                <li><strong>美國學校參訪</strong></li>
+            </ul>
+            
+            <button class="drawer-trigger" onclick="toggleDrawer(this)">
+                📸 查看參訪合影 <span>▼</span>
+            </button>
+
+            <div class="drawer-content">
+                <div class="drawer-inner">
+                    <div class="photo-grid">
+                        <div class="photo-item">
+                            <img src="https://placehold.co/400x300/f0f8ff/333333?text=Canada+Visit" alt="加拿大參訪">
+                            <div class="photo-caption">加拿大專業人士來訪交流</div>
+                        </div>
+                         <div class="photo-item">
+                            <img src="https://placehold.co/400x300/f0f8ff/333333?text=I-Shou+Visit" alt="義大國際高中">
+                            <div class="photo-caption">義大國際高中國小部參訪</div>
+                        </div>
+                         <div class="photo-item">
+                            <img src="https://placehold.co/400x300/f0f8ff/333333?text=American+School" alt="美國學校">
+                            <div class="photo-caption">美國學校師生參訪互動</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div style="text-align: center; padding-top: 30px; padding-bottom: 50px;">
             <a href="index.html#future" class="back-link">« 返回 未來展望 區塊</a>
         </div>
     </div>
+
+    <script>
+        function toggleDrawer(button) {
+            // 找到按鈕緊鄰的下一個元素，也就是 .drawer-content
+            const content = button.nextElementSibling;
+            
+            // 判斷當前狀態
+            if (content.style.maxHeight) {
+                // 如果已經打開，則關閉
+                content.style.maxHeight = null;
+                button.classList.remove('active');
+                // 恢復箭頭方向
+                const icon = button.querySelector('span');
+                if(icon) icon.style.transform = 'rotate(0deg)';
+                
+            } else {
+                // 如果是關閉的，則打開
+                // scrollHeight 可以取得內容的完整高度
+                content.style.maxHeight = content.scrollHeight + "px";
+                button.classList.add('active');
+                // 旋轉箭頭
+                const icon = button.querySelector('span');
+                if(icon) icon.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
 </body>
 </html>
